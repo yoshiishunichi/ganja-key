@@ -1,26 +1,59 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <h1>ganja-key</h1>
+    <Kenban class="kenban" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Kenban from './components/Kenban.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Kenban,
+  },
+};
 </script>
 
 <style>
+html {
+  width: 100vw;
+  height: 100vh;
+}
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #app {
+  height: 100vh;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
+}
+</style>
+
+<style scoped>
+.container {
+  background: rgb(70, 100, 130);
+  height: 100%;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 12px;
+  padding-bottom: 24px;
+  color: rgb(230, 225, 234);
+}
+
+.kenban {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
