@@ -20,7 +20,9 @@ export default {
 html {
   width: 100vw;
   height: 100vh;
+  background: rgb(70, 100, 130);
 }
+
 body {
   margin: 0;
   width: 100%;
@@ -40,7 +42,6 @@ body {
 
 <style scoped>
 .container {
-  background: rgb(70, 100, 130);
   height: 100%;
 }
 
