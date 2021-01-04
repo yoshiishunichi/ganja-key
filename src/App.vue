@@ -1,17 +1,23 @@
 <template>
   <div class="container">
-    <h1>ganja-key</h1>
-    <Kenban class="kenban" />
+    <h1>3連キーボード</h1>
+    <Kenban1 class="kenban" />
+    <Kenban2 class="kenban" />
+    <Kenban3 class="kenban" />
   </div>
 </template>
 
 <script>
-import Kenban from './components/Kenban.vue';
+import Kenban1 from './components/Kenban1.vue';
+import Kenban2 from './components/Kenban2.vue';
+import Kenban3 from './components/Kenban3.vue';
 
 export default {
   name: 'App',
   components: {
-    Kenban,
+    Kenban1,
+    Kenban2,
+    Kenban3,
   },
 };
 </script>
@@ -31,7 +37,6 @@ body {
 
 #app {
   height: 100vh;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -46,14 +51,16 @@ body {
 }
 
 h1 {
+  font-size: 21px;
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 12px;
-  padding-bottom: 24px;
+  padding-bottom: 12px;
   color: rgb(230, 225, 234);
 }
 
 .kenban {
+  margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
 }
