@@ -48,76 +48,107 @@ export default {
         { active: false },
         { active: false },
       ],
+      ctx: new AudioContext(),
+      url: './do.mp3',
+      do: null,
+      dos: null,
+      re: null,
     };
   },
   created() {
+    window
+      .fetch(this.url)
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) => this.ctx.decodeAudioData(arrayBuffer))
+      .then((audioBuffer) => {
+        this.do = audioBuffer;
+      });
     window.addEventListener('keydown', this.keyDown);
     window.addEventListener('keyup', this.keyUp);
   },
   beforeDestroy() {
     window.removeEventListener('keydown', this.keyDown);
-    window.removeEventListener('keydown', this.keyUp);
+    window.removeEventListener('keyup', this.keyUp);
   },
   methods: {
+    play(audioBuffer, rate) {
+      const source = this.ctx.createBufferSource();
+      source.buffer = audioBuffer;
+      source.playbackRate.value = Math.pow(2, rate / 12);
+      source.connect(this.ctx.destination);
+      source.start();
+    },
     keyDown(e) {
       if (e.keyCode === 49) {
         if (this.actives[0].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 0);
         }
         this.actives[0].active = true;
       } else if (e.keyCode === 50) {
         if (this.actives[1].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 1);
         }
         this.actives[1].active = true;
       } else if (e.keyCode === 51) {
         if (this.actives[2].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 2);
         }
         this.actives[2].active = true;
       } else if (e.keyCode === 52) {
         if (this.actives[3].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 3);
         }
         this.actives[3].active = true;
       } else if (e.keyCode === 53) {
         if (this.actives[4].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 4);
         }
         this.actives[4].active = true;
       } else if (e.keyCode === 54) {
         if (this.actives[5].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 5);
         }
         this.actives[5].active = true;
       } else if (e.keyCode === 55) {
         if (this.actives[6].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 6);
         }
         this.actives[6].active = true;
       } else if (e.keyCode === 56) {
         if (this.actives[7].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 7);
         }
         this.actives[7].active = true;
       } else if (e.keyCode === 57) {
         if (this.actives[8].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 8);
         }
         this.actives[8].active = true;
       } else if (e.keyCode === 48) {
         if (this.actives[9].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 9);
         }
         this.actives[9].active = true;
       } else if (e.keyCode === 189) {
         if (this.actives[10].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 10);
         }
         this.actives[10].active = true;
       } else if (e.keyCode === 187) {
         if (this.actives[11].active === false) {
           console.log(e.keyCode);
+          this.play(this.do, 11);
         }
         this.actives[11].active = true;
       } else {
