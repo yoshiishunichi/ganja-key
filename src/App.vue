@@ -1,13 +1,16 @@
 <template>
   <div class="container">
-    <h1>3連キーボード</h1>
-    <Kenban1 class="kenban" />
-    <Kenban2 class="kenban" />
-    <Kenban3 class="kenban" />
+    <Header />
+    <div class="key-wrap">
+      <Kenban1 class="kenban" />
+      <Kenban2 class="kenban" />
+      <Kenban3 class="kenban" />
+    </div>
   </div>
 </template>
 
 <script>
+import Header from './components/Header.vue';
 import Kenban1 from './components/Kenban1.vue';
 import Kenban2 from './components/Kenban2.vue';
 import Kenban3 from './components/Kenban3.vue';
@@ -15,6 +18,7 @@ import Kenban3 from './components/Kenban3.vue';
 export default {
   name: 'App',
   components: {
+    Header,
     Kenban1,
     Kenban2,
     Kenban3,
@@ -37,6 +41,7 @@ body {
 
 #app {
   height: 100vh;
+  font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -50,13 +55,8 @@ body {
   height: 100%;
 }
 
-h1 {
-  font-size: 21px;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  color: rgb(230, 225, 234);
+.key-wrap {
+  padding-top: 60px;
 }
 
 .kenban {
