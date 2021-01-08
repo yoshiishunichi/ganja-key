@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1><a class="title-link" href="/">3連キーボード</a></h1>
-    <p><a class="setting-link">設定</a></p>
+    <button class="setting-btn" type="button"><i class="fa fa-cog mr-2"></i><span></span></button>
   </header>
 </template>
 
@@ -20,6 +20,7 @@ header {
   background: #2c2c33;
   z-index: 1000;
   opacity: 0.9;
+  top: 0;
 }
 
 h1 {
@@ -32,10 +33,10 @@ h1 {
   font-weight: bold;
 }
 
-p {
+.setting-btn {
+  background: none;
   text-align: right;
   float: right;
-  color: #eee;
   margin-top: auto;
   margin-bottom: auto;
   margin-left: auto;
@@ -43,6 +44,16 @@ p {
   line-height: 14px;
   margin-right: 20px;
   font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: none;
+  font-size: 25px;
+  outline: none;
+}
+.setting-btn:hover {
+  opacity: 0.5;
 }
 
 .title-link {
@@ -51,13 +62,11 @@ p {
   cursor: pointer;
 }
 
-.setting-link {
-  color: #ccc;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 a:hover {
   opacity: 0.8;
+}
+
+.fa-cog {
+  color: #eee;
 }
 </style>

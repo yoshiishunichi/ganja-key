@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <Header />
-    <InputMusic class="inputmusic" />
     <div class="key-wrap">
       <Kenban1 class="kenban" />
       <Kenban2 class="kenban" />
@@ -12,7 +11,6 @@
 
 <script>
 import Header from './components/Header.vue';
-import InputMusic from './components/InputMusic.vue';
 import Kenban1 from './components/Kenban1.vue';
 import Kenban2 from './components/Kenban2.vue';
 import Kenban3 from './components/Kenban3.vue';
@@ -21,7 +19,6 @@ export default {
   name: 'App',
   components: {
     Header,
-    InputMusic,
     Kenban1,
     Kenban2,
     Kenban3,
@@ -56,10 +53,6 @@ body {
 <style scoped>
 .container {
   height: 100%;
-}
-
-.inputmusic {
-  padding-top: 60px;
 }
 
 .key-wrap {
