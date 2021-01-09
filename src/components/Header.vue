@@ -4,7 +4,7 @@
     <button class="setting-btn" type="button" @click="openModal">
       <i class="fa fa-cog mr-2"></i><span></span>
     </button>
-    <ModalView v-show="showContent" @from-modalview="closeModal" />
+    <ModalView v-show="showContent" ref="modalRef" @modal-close="closeModal" />
   </header>
 </template>
 
@@ -25,6 +25,7 @@ export default {
   methods: {
     openModal() {
       this.showContent = !this.showContent;
+      this.$refs.modalRef.receiveStatus(this.releasestop);
     },
     closeModal(releasestop) {
       this.showContent = false;

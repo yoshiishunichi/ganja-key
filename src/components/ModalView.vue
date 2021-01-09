@@ -1,7 +1,8 @@
 <template>
-  <div v-show="showContent" id="overlay" @click="clickEvent">
+  <div id="overlay" @click="clickEvent">
     <div id="modalwindow" @click="stopEvent">
       <h2>設定</h2>
+      <InputMusic />
       <p>
         <input id="stopsound" v-model="releasestop" type="checkbox" /><label
           for="stopsound"
@@ -15,8 +16,13 @@
 </template>
 
 <script>
+import InputMusic from './InputMusic.vue';
+
 export default {
   name: 'ModalView',
+  components: {
+    InputMusic,
+  },
   data() {
     return {
       releasestop: 'false',
@@ -24,10 +30,13 @@ export default {
   },
   methods: {
     clickEvent() {
-      this.$emit('from-child-close');
+      this.$emit('modal-close', this.releasestop);
     },
     stopEvent() {
       event.stopPropagation();
+    },
+    receiveStatus(status) {
+      this.releasestop = status;
     },
   },
 };
