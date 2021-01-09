@@ -1,27 +1,34 @@
 <template>
   <header>
     <h1><a class="title-link" href="/">3連キーボード</a></h1>
-    <button class="setting-btn" type="button"><i class="fa fa-cog mr-2"></i><span></span></button>
-    <div id="overlay">
-      <div id="modalwindow">
-        <p>これがモーダルウィンドウです。</p>
-        <p><button>close</button></p>
-      </div>
-    </div>
+    <button class="setting-btn" type="button" @click="openModal">
+      <i class="fa fa-cog mr-2"></i><span></span>
+    </button>
+    <ModalView v-show="showContent" @from-modalview="closeModal" />
   </header>
 </template>
 
 <script>
+import ModalView from './ModalView.vue';
+
 export default {
   name: 'Header',
+  components: {
+    ModalView,
+  },
   data() {
     return {
       showContent: false,
+      releasestop: false,
     };
   },
   methods: {
     openModal() {
-      this.showContent = true;
+      this.showContent = !this.showContent;
+    },
+    closeModal(releasestop) {
+      this.showContent = false;
+      this.releasestop = releasestop;
     },
   },
 };
@@ -86,25 +93,5 @@ a:hover {
   color: #eee;
   display: inline;
   font-size: 20px;
-}
-
-#overlay {
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#modalwindow {
-  z-index: 2;
-  width: 50%;
-  padding: 1em;
-  background: #fff;
 }
 </style>
