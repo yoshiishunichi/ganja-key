@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <Header />
+    <Header @child-opening="opening" @child-closing="closing" />
     <div class="key-wrap">
-      <Kenban1 class="kenban" />
-      <Kenban2 class="kenban" />
-      <Kenban3 class="kenban" />
+      <Kenban1 ref="keyRef" class="kenban" />
+      <Kenban2 ref="keyRef" class="kenban" />
+      <Kenban3 ref="keyRef" class="kenban" />
     </div>
   </div>
 </template>
@@ -22,6 +22,21 @@ export default {
     Kenban1,
     Kenban2,
     Kenban3,
+  },
+  data() {
+    return {
+      showContent: false,
+    };
+  },
+  methods: {
+    opening() {
+      this.showContent = true;
+      this.$refs.keyRef.receiveModalStatus(this.showContent);
+    },
+    closing() {
+      this.showContent = false;
+      this.$refs.keyRef.receiveModalStatus(this.showContent);
+    },
   },
 };
 </script>

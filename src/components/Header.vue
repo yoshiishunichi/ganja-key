@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1><a class="title-link" href="/">3連キーボード</a></h1>
-    <button class="setting-btn" type="button" @click="openModal">
+    <button v-if="!showContent" class="setting-btn" type="button" @click="openModal">
       <i class="fa fa-cog mr-2"></i><span></span>
     </button>
     <ModalView v-show="showContent" ref="modalRef" @modal-close="closeModal" />
@@ -24,11 +24,13 @@ export default {
   },
   methods: {
     openModal() {
-      this.showContent = !this.showContent;
+      this.showContent = true;
+      this.$emit('child-opening');
       this.$refs.modalRef.receiveStatus(this.releasestop);
     },
     closeModal(releasestop) {
       this.showContent = false;
+      this.$emit('child-closing');
       this.releasestop = releasestop;
     },
   },

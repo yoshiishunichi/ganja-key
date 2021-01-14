@@ -53,6 +53,7 @@ export default {
       do: null,
       dos: null,
       re: null,
+      showContent: false,
     };
   },
   created() {
@@ -71,6 +72,10 @@ export default {
     window.removeEventListener('keyup', this.keyUp);
   },
   methods: {
+    receiveModalStatus(showContent) {
+      this.showContent = showContent;
+      console.log('受け取り完了:', this.showContent);
+    },
     play(audioBuffer, rate) {
       const source = this.ctx.createBufferSource();
       source.buffer = audioBuffer;
