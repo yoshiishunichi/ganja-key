@@ -2,9 +2,9 @@
   <div class="container">
     <Header @child-opening="opening" @child-closing="closing" />
     <div class="key-wrap">
-      <Kenban1 ref="keyRef" class="kenban" />
-      <Kenban2 ref="keyRef" class="kenban" />
-      <Kenban3 ref="keyRef" class="kenban" />
+      <Kenban1 ref="keyRef1" class="kenban" />
+      <Kenban2 ref="keyRef2" class="kenban" />
+      <Kenban3 ref="keyRef3" class="kenban" />
     </div>
   </div>
 </template>
@@ -31,11 +31,15 @@ export default {
   methods: {
     opening() {
       this.showContent = true;
-      this.$refs.keyRef.receiveModalStatus(this.showContent);
+      this.$refs.keyRef1.receiveModalStatus(this.showContent);
+      this.$refs.keyRef2.receiveModalStatus(this.showContent);
+      this.$refs.keyRef3.receiveModalStatus(this.showContent);
     },
     closing() {
       this.showContent = false;
-      this.$refs.keyRef.receiveModalStatus(this.showContent);
+      this.$refs.keyRef1.receiveModalStatus(this.showContent);
+      this.$refs.keyRef2.receiveModalStatus(this.showContent);
+      this.$refs.keyRef3.receiveModalStatus(this.showContent);
     },
   },
 };

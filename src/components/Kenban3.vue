@@ -51,8 +51,7 @@ export default {
       ctx: new AudioContext(),
       url: './do.mp3',
       do: null,
-      dos: null,
-      re: null,
+      openingView: false,
     };
   },
   created() {
@@ -66,14 +65,14 @@ export default {
     window.addEventListener('keydown', this.keyDown);
     window.addEventListener('keyup', this.keyUp);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener('keydown', this.keyDown);
     window.removeEventListener('keyup', this.keyUp);
   },
   methods: {
     receiveModalStatus(showContent) {
-      this.showContent = showContent;
-      console.log('受け取り完了:', this.showContent);
+      this.openingView = showContent;
+      console.log('受け取り完了:', this.openingView);
     },
     play(audioBuffer, rate) {
       const source = this.ctx.createBufferSource();
@@ -84,77 +83,77 @@ export default {
     },
     keyDown(e) {
       if (e.key === 'a') {
-        if (this.actives[0].active === false) {
+        if (this.actives[0].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 12);
+          this.actives[0].active = true;
         }
-        this.actives[0].active = true;
       } else if (e.key === 's') {
-        if (this.actives[1].active === false) {
+        if (this.actives[1].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 13);
+          this.actives[1].active = true;
         }
-        this.actives[1].active = true;
       } else if (e.key === 'd') {
-        if (this.actives[2].active === false) {
+        if (this.actives[2].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 14);
+          this.actives[2].active = true;
         }
-        this.actives[2].active = true;
       } else if (e.key === 'f') {
-        if (this.actives[3].active === false) {
+        if (this.actives[3].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 15);
+          this.actives[3].active = true;
         }
-        this.actives[3].active = true;
       } else if (e.key === 'g') {
-        if (this.actives[4].active === false) {
+        if (this.actives[4].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 16);
+          this.actives[4].active = true;
         }
-        this.actives[4].active = true;
       } else if (e.key === 'h') {
-        if (this.actives[5].active === false) {
+        if (this.actives[5].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 17);
+          this.actives[5].active = true;
         }
-        this.actives[5].active = true;
       } else if (e.key === 'j') {
-        if (this.actives[6].active === false) {
+        if (this.actives[6].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 18);
+          this.actives[6].active = true;
         }
-        this.actives[6].active = true;
       } else if (e.key === 'k') {
-        if (this.actives[7].active === false) {
+        if (this.actives[7].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 19);
+          this.actives[7].active = true;
         }
-        this.actives[7].active = true;
       } else if (e.key === 'l') {
-        if (this.actives[8].active === false) {
+        if (this.actives[8].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 20);
+          this.actives[8].active = true;
         }
-        this.actives[8].active = true;
       } else if (e.key === ';') {
-        if (this.actives[9].active === false) {
+        if (this.actives[9].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 21);
+          this.actives[9].active = true;
         }
-        this.actives[9].active = true;
       } else if (e.key === ':') {
-        if (this.actives[10].active === false) {
+        if (this.actives[10].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 22);
+          this.actives[10].active = true;
         }
-        this.actives[10].active = true;
       } else if (e.key === ']') {
-        if (this.actives[11].active === false) {
+        if (this.actives[11].active === false && !this.openingView) {
           console.log(e.key);
           this.play(this.do, 23);
+          this.actives[11].active = true;
         }
-        this.actives[11].active = true;
       } else {
         console.log(e.key);
       }
