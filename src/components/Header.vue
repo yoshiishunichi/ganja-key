@@ -4,7 +4,12 @@
     <button v-if="!showContent" class="setting-btn" type="button" @click="openModal">
       <i class="fa fa-cog mr-2"></i><span></span>
     </button>
-    <ModalView v-show="showContent" ref="modalRef" @modal-close="closeModal" />
+    <ModalView
+      v-show="showContent"
+      ref="modalRef"
+      @modal-close="closeModal"
+      @audio-to-header="receiveAudioFromModal"
+    />
   </header>
 </template>
 
@@ -20,6 +25,7 @@ export default {
     return {
       showContent: false,
       releasestop: false,
+      audioData: null,
     };
   },
   methods: {
@@ -32,6 +38,10 @@ export default {
       this.showContent = false;
       this.releasestop = releasestop;
       this.$emit('child-closing', this.releasestop);
+    },
+    receiveAudioFromModal(audiodata) {
+      this.audioData = audiodata;
+      this.$emit('audio-to-main', this.audioData);
     },
   },
 };

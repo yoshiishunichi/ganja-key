@@ -2,7 +2,7 @@
   <div id="overlay" @click="clickEvent">
     <div id="modalwindow" @click="stopEvent">
       <h2>設定</h2>
-      <InputMusic />
+      <InputMusic @audio-serve="receiveAudioData" />
       <p>
         <input id="stopsound" v-model="releasestop" type="checkbox" /><label
           for="stopsound"
@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       releasestop: 'false',
+      audioData: null,
     };
   },
   methods: {
@@ -37,6 +38,10 @@ export default {
     },
     receiveStatus(status) {
       this.releasestop = status;
+    },
+    receiveAudioData(audiodata) {
+      this.audioData = audiodata;
+      this.$emit('audio-to-header', this.audioData);
     },
   },
 };

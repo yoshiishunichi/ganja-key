@@ -27,7 +27,7 @@ export default {
         reader.onload = (e) => {
           // audioDataに格納
           this.audioData = e.target.result;
-          console.log('url:', this.audioData);
+          this.$emit('audio-serve', this.audioData);
         };
         reader.readAsDataURL(file);
       }

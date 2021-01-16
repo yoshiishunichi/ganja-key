@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <Header @child-opening="opening" @child-closing="closing" />
+    <Header
+      @child-opening="opening"
+      @child-closing="closing"
+      @audio-to-main="receiveAudioFromHeader"
+    />
     <div class="key-wrap">
       <Kenban1 ref="keyRef1" class="kenban" />
       <Kenban2 ref="keyRef2" class="kenban" />
@@ -27,6 +31,7 @@ export default {
     return {
       showContent: false,
       releaseStop: false,
+      audioData: null,
     };
   },
   methods: {
@@ -47,6 +52,12 @@ export default {
       this.$refs.keyRef1.receiveModalStatus(this.showContent);
       this.$refs.keyRef2.receiveModalStatus(this.showContent);
       this.$refs.keyRef3.receiveModalStatus(this.showContent);
+    },
+    receiveAudioFromHeader(audiodata) {
+      this.audioData = audiodata;
+      this.$refs.keyRef1.receiveAudioData(this.audioData);
+      this.$refs.keyRef2.receiveAudioData(this.audioData);
+      this.$refs.keyRef3.receiveAudioData(this.audioData);
     },
   },
 };
