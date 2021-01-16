@@ -77,7 +77,6 @@ export default {
     },
     receiveReleaseStatus(releaseStop) {
       this.releaseStop = releaseStop;
-      console.log('リリース受け取り完了:', this.releaseStop);
     },
     receiveAudioData(audiodata) {
       this.audioData = audiodata;
@@ -89,8 +88,15 @@ export default {
           .then((audioBuffer) => {
             this.do = audioBuffer;
           });
+      } else {
+        window
+          .fetch(this.url)
+          .then((response) => response.arrayBuffer())
+          .then((arrayBuffer) => this.ctx.decodeAudioData(arrayBuffer))
+          .then((audioBuffer) => {
+            this.do = audioBuffer;
+          });
       }
-      console.log('this.do:', this.do);
     },
     play(audioBuffer, rate) {
       this.source = this.ctx.createBufferSource();
