@@ -7,7 +7,7 @@
         <input id="stopsound" v-model="releasestop" type="checkbox" /><label
           for="stopsound"
           class="stopsoundlabel"
-          >指を離したら音を止める{{ releasestop }}</label
+          >指を離したら音を止める</label
         >
       </p>
       <p><button @click="clickEvent">閉じる</button></p>
@@ -61,6 +61,10 @@ export default {
   width: 70%;
   padding: 1em;
   background: #fff;
+}
+
+#stopsound {
+  outline: none;
 }
 
 .stopsoundlabel {

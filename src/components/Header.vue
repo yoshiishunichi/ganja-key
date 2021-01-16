@@ -30,8 +30,8 @@ export default {
     },
     closeModal(releasestop) {
       this.showContent = false;
-      this.$emit('child-closing');
       this.releasestop = releasestop;
+      this.$emit('child-closing', this.releasestop);
     },
   },
 };

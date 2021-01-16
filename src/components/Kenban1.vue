@@ -49,9 +49,11 @@ export default {
         { active: false },
       ],
       ctx: new AudioContext(),
+      source: null,
       url: './do.mp3',
       do: null,
       openingView: false,
+      releaseStop: false,
     };
   },
   mounted() {
@@ -72,84 +74,87 @@ export default {
   methods: {
     receiveModalStatus(showContent) {
       this.openingView = showContent;
-      console.log('受け取り完了:', this.openingView);
+    },
+    receiveReleaseStatus(releaseStop) {
+      this.releaseStop = releaseStop;
+      console.log('リリース受け取り完了:', this.releaseStop);
     },
     play(audioBuffer, rate) {
-      const source = this.ctx.createBufferSource();
-      source.buffer = audioBuffer;
-      source.playbackRate.value = Math.pow(2, rate / 12);
-      source.connect(this.ctx.destination);
-      source.start();
+      this.source = this.ctx.createBufferSource();
+      this.source.buffer = audioBuffer;
+      this.source.playbackRate.value = Math.pow(2, rate / 12);
+      this.source.connect(this.ctx.destination);
+      this.source.start();
     },
     keyDown(e) {
       if (e.key === '1') {
-        if (this.actives[0].active === false && !this.openingView) {
+        if (!this.actives[0].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -12);
           this.actives[0].active = true;
         }
       } else if (e.key === '2') {
-        if (this.actives[1].active === false && !this.openingView) {
+        if (!this.actives[1].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -11);
           this.actives[1].active = true;
         }
       } else if (e.key === '3') {
-        if (this.actives[2].active === false && !this.openingView) {
+        if (!this.actives[2].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -10);
           this.actives[2].active = true;
         }
       } else if (e.key === '4') {
-        if (this.actives[3].active === false && !this.openingView) {
+        if (!this.actives[3].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -9);
           this.actives[3].active = true;
         }
       } else if (e.key === '5') {
-        if (this.actives[4].active === false && !this.openingView) {
+        if (!this.actives[4].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -8);
           this.actives[4].active = true;
         }
       } else if (e.key === '6') {
-        if (this.actives[5].active === false && !this.openingView) {
+        if (!this.actives[5].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -7);
           this.actives[5].active = true;
         }
       } else if (e.key === '7') {
-        if (this.actives[6].active === false && !this.openingView) {
+        if (!this.actives[6].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -6);
           this.actives[6].active = true;
         }
       } else if (e.key === '8') {
-        if (this.actives[7].active === false && !this.openingView) {
+        if (!this.actives[7].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -5);
           this.actives[7].active = true;
         }
       } else if (e.key === '9') {
-        if (this.actives[8].active === false && !this.openingView) {
+        if (!this.actives[8].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -4);
           this.actives[8].active = true;
         }
       } else if (e.key === '0') {
-        if (this.actives[9].active === false && !this.openingView) {
+        if (!this.actives[9].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -3);
           this.actives[9].active = true;
         }
       } else if (e.key === '-') {
-        if (this.actives[10].active === false && !this.openingView) {
+        if (!this.actives[10].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -2);
           this.actives[10].active = true;
         }
       } else if (e.key === '^') {
-        if (this.actives[11].active === false && !this.openingView) {
+        if (!this.actives[11].active && !this.openingView) {
           console.log(e.key);
           this.play(this.do, -1);
           this.actives[11].active = true;
@@ -160,63 +165,75 @@ export default {
     },
     keyUp(e) {
       if (e.key === '1') {
-        if (this.actives[0].active === true) {
+        if (this.actives[0].active && this.releaseStop) {
           console.log('up:1');
+          this.source.stop();
         }
         this.actives[0].active = false;
       } else if (e.key === '2') {
-        if (this.actives[1].active === true) {
+        if (this.actives[1].active && this.releaseStop) {
           console.log('up:2');
+          this.source.stop();
         }
         this.actives[1].active = false;
       } else if (e.key === '3') {
-        if (this.actives[2].active === true) {
+        if (this.actives[2].active && this.releaseStop) {
           console.log('up:3');
+          this.source.stop();
         }
         this.actives[2].active = false;
       } else if (e.key === '4') {
-        if (this.actives[3].active === true) {
+        if (this.actives[3].active && this.releaseStop) {
           console.log('up:4');
+          this.source.stop();
         }
         this.actives[3].active = false;
       } else if (e.key === '5') {
-        if (this.actives[4].active === true) {
+        if (this.actives[4].active && this.releaseStop) {
           console.log('up:5');
+          this.source.stop();
         }
         this.actives[4].active = false;
       } else if (e.key === '6') {
-        if (this.actives[5].active === true) {
+        if (this.actives[5].active && this.releaseStop) {
           console.log('up:6');
+          this.source.stop();
         }
         this.actives[5].active = false;
       } else if (e.key === '7') {
-        if (this.actives[6].active === true) {
+        if (this.actives[6].active && this.releaseStop) {
           console.log('up:7');
+          this.source.stop();
         }
         this.actives[6].active = false;
       } else if (e.key === '8') {
-        if (this.actives[7].active === true) {
+        if (this.actives[7].active && this.releaseStop) {
           console.log('up:8');
+          this.source.stop();
         }
         this.actives[7].active = false;
       } else if (e.key === '9') {
-        if (this.actives[8].active === true) {
+        if (this.actives[8].active && this.releaseStop) {
           console.log('up:9');
+          this.source.stop();
         }
         this.actives[8].active = false;
       } else if (e.key === '0') {
-        if (this.actives[9].active === true) {
+        if (this.actives[9].active && this.releaseStop) {
           console.log('up:0');
+          this.source.stop();
         }
         this.actives[9].active = false;
       } else if (e.key === '-') {
-        if (this.actives[10].active === true) {
+        if (this.actives[10].active && this.releaseStop) {
           console.log('up:-');
+          this.source.stop();
         }
         this.actives[10].active = false;
       } else if (e.key === '^') {
-        if (this.actives[11].active === true) {
+        if (this.actives[11].active && this.releaseStop) {
           console.log('up:^');
+          this.source.stop();
         }
         this.actives[11].active = false;
       }

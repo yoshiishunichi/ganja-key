@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       showContent: false,
+      releaseStop: false,
     };
   },
   methods: {
@@ -35,8 +36,14 @@ export default {
       this.$refs.keyRef2.receiveModalStatus(this.showContent);
       this.$refs.keyRef3.receiveModalStatus(this.showContent);
     },
-    closing() {
+    closing(releaseStop) {
       this.showContent = false;
+      this.releaseStop = releaseStop;
+
+      this.$refs.keyRef1.receiveReleaseStatus(this.releaseStop);
+      this.$refs.keyRef2.receiveReleaseStatus(this.releaseStop);
+      this.$refs.keyRef3.receiveReleaseStatus(this.releaseStop);
+
       this.$refs.keyRef1.receiveModalStatus(this.showContent);
       this.$refs.keyRef2.receiveModalStatus(this.showContent);
       this.$refs.keyRef3.receiveModalStatus(this.showContent);
