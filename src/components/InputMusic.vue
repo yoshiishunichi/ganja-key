@@ -4,6 +4,7 @@
       ファイルを選択してください
       <input id="file_upload" type="file" accept="audio/*" @change="fileChange($event)" />
     </label>
+    <p v-if="audioData" class="sample">サンプル</p>
     <audio v-if="audioData" controls :src="audioData">
       Your browser does not support the
       <code>audio</code> element.
@@ -74,6 +75,10 @@ label {
 
 label:hover {
   opacity: 0.8;
+}
+
+.sample {
+  text-align: center;
 }
 
 audio {

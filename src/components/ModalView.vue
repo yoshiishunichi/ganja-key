@@ -38,10 +38,16 @@ export default {
     },
     receiveStatus(status) {
       this.releasestop = status;
+      window.addEventListener('keydown', this.keyDown);
     },
     receiveAudioData(audiodata) {
       this.audioData = audiodata;
       this.$emit('audio-to-header', this.audioData);
+    },
+    keyDown(e) {
+      if (e.key === 'Escape') {
+        this.clickEvent();
+      }
     },
   },
 };
