@@ -48,6 +48,20 @@ export default {
         { active: false },
         { active: false },
       ],
+      keyCode: [
+        { code: 'q' },
+        { code: 'w' },
+        { code: 'e' },
+        { code: 'r' },
+        { code: 't' },
+        { code: 'y' },
+        { code: 'u' },
+        { code: 'i' },
+        { code: 'o' },
+        { code: 'p' },
+        { code: '@' },
+        { code: '[' },
+      ],
       ctx: new AudioContext(),
       source: null,
       url: './do.mp3',
@@ -106,155 +120,24 @@ export default {
       this.source.start();
     },
     keyDown(e) {
-      if (e.key === 'q') {
-        if (!this.actives[0].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 0);
-          this.actives[0].active = true;
+      for (let i = 0; i < 12; i++) {
+        if (e.key === this.keyCode[i].code) {
+          if (!this.actives[i].active && !this.openingView) {
+            console.log(e.key);
+            this.play(this.do, i);
+            this.actives[i].active = true;
+          }
         }
-      } else if (e.key === 'w') {
-        if (!this.actives[1].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 1);
-          this.actives[1].active = true;
-        }
-      } else if (e.key === 'e') {
-        if (!this.actives[2].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 2);
-          this.actives[2].active = true;
-        }
-      } else if (e.key === 'r') {
-        if (!this.actives[3].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 3);
-          this.actives[3].active = true;
-        }
-      } else if (e.key === 't') {
-        if (!this.actives[4].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 4);
-          this.actives[4].active = true;
-        }
-      } else if (e.key === 'y') {
-        if (!this.actives[5].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 5);
-          this.actives[5].active = true;
-        }
-      } else if (e.key === 'u') {
-        if (!this.actives[6].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 6);
-          this.actives[6].active = true;
-        }
-      } else if (e.key === 'i') {
-        if (!this.actives[7].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 7);
-          this.actives[7].active = true;
-        }
-      } else if (e.key === 'o') {
-        if (!this.actives[8].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 8);
-          this.actives[8].active = true;
-        }
-      } else if (e.key === 'p') {
-        if (!this.actives[9].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 9);
-          this.actives[9].active = true;
-        }
-      } else if (e.key === '@') {
-        if (!this.actives[10].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 10);
-          this.actives[10].active = true;
-        }
-      } else if (e.key === '[') {
-        if (!this.actives[11].active && !this.openingView) {
-          console.log(e.key);
-          this.play(this.do, 11);
-          this.actives[11].active = true;
-        }
-      } else {
-        console.log(e.key);
       }
     },
     keyUp(e) {
-      if (e.key === 'q') {
-        if (this.actives[0].active && this.releaseStop) {
-          console.log('up:1');
-          this.source.stop();
+      for (let i = 0; i < 12; i++) {
+        if (e.key === this.keyCode[i].code) {
+          if (this.actives[i].active && this.releaseStop) {
+            this.source.stop();
+          }
+          this.actives[i].active = false;
         }
-        this.actives[0].active = false;
-      } else if (e.key === 'w') {
-        if (this.actives[1].active && this.releaseStop) {
-          console.log('up:2');
-          this.source.stop();
-        }
-        this.actives[1].active = false;
-      } else if (e.key === 'e') {
-        if (this.actives[2].active && this.releaseStop) {
-          console.log('up:3');
-          this.source.stop();
-        }
-        this.actives[2].active = false;
-      } else if (e.key === 'r') {
-        if (this.actives[3].active && this.releaseStop) {
-          console.log('up:4');
-          this.source.stop();
-        }
-        this.actives[3].active = false;
-      } else if (e.key === 't') {
-        if (this.actives[4].active && this.releaseStop) {
-          console.log('up:5');
-          this.source.stop();
-        }
-        this.actives[4].active = false;
-      } else if (e.key === 'y') {
-        if (this.actives[5].active && this.releaseStop) {
-          console.log('up:6');
-          this.source.stop();
-        }
-        this.actives[5].active = false;
-      } else if (e.key === 'u') {
-        if (this.actives[6].active && this.releaseStop) {
-          console.log('up:7');
-          this.source.stop();
-        }
-        this.actives[6].active = false;
-      } else if (e.key === 'i') {
-        if (this.actives[7].active && this.releaseStop) {
-          console.log('up:8');
-          this.source.stop();
-        }
-        this.actives[7].active = false;
-      } else if (e.key === 'o') {
-        if (this.actives[8].active && this.releaseStop) {
-          console.log('up:9');
-          this.source.stop();
-        }
-        this.actives[8].active = false;
-      } else if (e.key === 'p') {
-        if (this.actives[9].active && this.releaseStop) {
-          console.log('up:0');
-          this.source.stop();
-        }
-        this.actives[9].active = false;
-      } else if (e.key === '@') {
-        if (this.actives[10].active && this.releaseStop) {
-          console.log('up:-');
-          this.source.stop();
-        }
-        this.actives[10].active = false;
-      } else if (e.key === '[') {
-        if (this.actives[11].active && this.releaseStop) {
-          console.log('up:^');
-          this.source.stop();
-        }
-        this.actives[11].active = false;
       }
     },
   },
