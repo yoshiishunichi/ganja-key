@@ -62,8 +62,8 @@ export default {
         { code: '@' },
         { code: '[' },
       ],
+      source: [null, null, null, null, null, null, null, null, null, null, null, null],
       ctx: new AudioContext(),
-      source: null,
       url: './do.mp3',
       do: null,
       openingView: false,
@@ -113,11 +113,11 @@ export default {
       }
     },
     play(audioBuffer, rate) {
-      this.source = this.ctx.createBufferSource();
-      this.source.buffer = audioBuffer;
-      this.source.playbackRate.value = Math.pow(2, rate / 12);
-      this.source.connect(this.ctx.destination);
-      this.source.start();
+      this.source[rate] = this.ctx.createBufferSource();
+      this.source[rate].buffer = audioBuffer;
+      this.source[rate].playbackRate.value = Math.pow(2, rate / 12);
+      this.source[rate].connect(this.ctx.destination);
+      this.source[rate].start();
     },
     keyDown(e) {
       for (let i = 0; i < 12; i++) {
@@ -134,7 +134,7 @@ export default {
       for (let i = 0; i < 12; i++) {
         if (e.key === this.keyCode[i].code) {
           if (this.actives[i].active && this.releaseStop) {
-            this.source.stop();
+            this.source[i].stop();
           }
           this.actives[i].active = false;
         }
