@@ -30,6 +30,9 @@ export default {
       audioData: null,
     };
   },
+  beforeUnmount() {
+    window.removeEventListener('keydown', this.keyDown);
+  },
   methods: {
     clickEvent() {
       this.$emit('modal-close', this.releasestop);

@@ -11,7 +11,10 @@
       <Kenban2 ref="keyRef2" class="kenban" />
       <Kenban3 ref="keyRef3" class="kenban" />
     </div>
-    <h3 v-if="changingNow" class="change-title">キー変更中</h3>
+    <h3 v-if="changingNow" class="change-title">
+      キー変更中(変更したいキーをクリックしてね)<br />
+      Enterで終了
+    </h3>
   </div>
 </template>
 
@@ -36,6 +39,12 @@ export default {
       audioData: null,
       changingNow: false,
     };
+  },
+  mounted() {
+    window.addEventListener('keydown', this.keyDown);
+  },
+  beforeUnmount() {
+    window.removeEventListener('keydown', this.keyDown);
   },
   methods: {
     changeKey() {
@@ -129,6 +138,7 @@ body {
 }
 
 .change-title {
+  font-size: 17px;
   padding-top: 20px;
   color: white;
 }
