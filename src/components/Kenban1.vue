@@ -4,14 +4,14 @@
       <div
         class="white-key"
         :class="{ actW: actives[0].active, changeW: actives[0].changing }"
-        @click="changeKey(0)"
+        @click="tapKey(0)"
       >
         <p>{{ keyCode[0].code.toUpperCase() }}</p>
       </div>
       <div
         class="black-key"
         :class="{ actB: actives[1].active, changeB: actives[1].changing }"
-        @click="changeKey(1)"
+        @click="tapKey(1)"
       >
         <p>{{ keyCode[1].code.toUpperCase() }}</p>
       </div>
@@ -20,14 +20,14 @@
       <div
         class="white-key"
         :class="{ actW: actives[2].active, changeW: actives[2].changing }"
-        @click="changeKey(2)"
+        @click="tapKey(2)"
       >
         <p>{{ keyCode[2].code.toUpperCase() }}</p>
       </div>
       <div
         class="black-key"
         :class="{ actB: actives[3].active, changeB: actives[3].changing }"
-        @click="changeKey(3)"
+        @click="tapKey(3)"
       >
         <p>{{ keyCode[3].code.toUpperCase() }}</p>
       </div>
@@ -36,7 +36,7 @@
       <div
         class="white-key"
         :class="{ actW: actives[4].active, changeW: actives[4].changing }"
-        @click="changeKey(4)"
+        @click="tapKey(4)"
       >
         <p>{{ keyCode[4].code.toUpperCase() }}</p>
       </div>
@@ -45,14 +45,14 @@
       <div
         class="white-key"
         :class="{ actW: actives[5].active, changeW: actives[5].changing }"
-        @click="changeKey(5)"
+        @click="tapKey(5)"
       >
         <p>{{ keyCode[5].code.toUpperCase() }}</p>
       </div>
       <div
         class="black-key"
         :class="{ actB: actives[6].active, changeB: actives[6].changing }"
-        @click="changeKey(6)"
+        @click="tapKey(6)"
       >
         <p>{{ keyCode[6].code.toUpperCase() }}</p>
       </div>
@@ -61,14 +61,14 @@
       <div
         class="white-key"
         :class="{ actW: actives[7].active, changeW: actives[7].changing }"
-        @click="changeKey(7)"
+        @click="tapKey(7)"
       >
         <p>{{ keyCode[7].code.toUpperCase() }}</p>
       </div>
       <div
         class="black-key"
         :class="{ actB: actives[8].active, changeB: actives[8].changing }"
-        @click="changeKey(8)"
+        @click="tapKey(8)"
       >
         <p>{{ keyCode[8].code.toUpperCase() }}</p>
       </div>
@@ -77,14 +77,14 @@
       <div
         class="white-key"
         :class="{ actW: actives[9].active, changeW: actives[9].changing }"
-        @click="changeKey(9)"
+        @click="tapKey(9)"
       >
         <p>{{ keyCode[9].code.toUpperCase() }}</p>
       </div>
       <div
         class="black-key"
         :class="{ actB: actives[10].active, changeB: actives[10].changing }"
-        @click="changeKey(10)"
+        @click="tapKey(10)"
       >
         <p>{{ keyCode[10].code.toUpperCase() }}</p>
       </div>
@@ -93,7 +93,7 @@
       <div
         class="white-key"
         :class="{ actW: actives[11].active, changeW: actives[11].changing }"
-        @click="changeKey(11)"
+        @click="tapKey(11)"
       >
         <p>{{ keyCode[11].code.toUpperCase() }}</p>
       </div>
@@ -142,7 +142,7 @@ export default {
       releaseStop: false,
       audioData: null,
       changeNow: false,
-      changeNum: null,
+      changeNum: [],
     };
   },
   mounted() {
@@ -161,10 +161,23 @@ export default {
     window.removeEventListener('keyup', this.keyUp);
   },
   methods: {
-    changeKey(num) {
+    tapKey(num) {
       if (this.changeNow) {
         this.actives[num].changing = !this.actives[num].changing;
+        // 配列changeNumに格納したい
+        let stillContained = false;
+        for (let i = 0; i < 12; i++) {
+          if (this.changeNum[i] === num) {
+            stillContained = true;
+            // 重複した時にキー.changingを解除
+            this.changeNum.splice(i, 1);
+          }
+        }
+        if (!stillContained) {
+          this.changeNum.push(num);
+        }
       }
+      console.log('変更する奴ら:', this.changeNum);
     },
     changeReceive() {
       console.log('変更の通知受け取ったよ1');
@@ -214,18 +227,31 @@ export default {
     },
     keyDown(e) {
       for (let i = 0; i < 12; i++) {
-        if (e.key === this.keyCode[i].code) {
-          if (!this.actives[i].active && !this.openingView && !this.changeNow) {
-            this.play(this.do, -12 + i);
-            this.actives[i].active = true;
-          }
+        if (
+          e.key === this.keyCode[i].code &&
+          !this.actives[i].active &&
+          !this.openingView &&
+          !this.changeNow
+        ) {
+          this.play(this.do, -12 + i);
+          this.actives[i].active = true;
         }
       }
-      if (this.changeNow && this.changeNum) {
-        this.keyCode[this.changeNum].code = e.key;
-        this.actives[this.changeNum].changing = false;
+      if (this.changeNow && e.key != 'Enter') {
+        console.log('変更', e.key);
+        console.log('変更前のchangeNum:', this.changeNum);
+        for (let i = 0; i < 12; i++) {
+          if (this.actives[i].changing) {
+            this.keyCode[i].code = e.key;
+            this.actives[i].changing = false;
+            console.log('i:', i);
+          }
+        }
+        this.changeNum = [];
         this.changeNow = false;
-        this.changeNum = null;
+        this.endChaging();
+        this.$emit('change-end');
+        console.log('変更後のchangeNum:', this.changeNum);
       }
     },
     keyUp(e) {

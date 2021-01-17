@@ -7,9 +7,9 @@
       @change-serve="changeKey"
     />
     <div class="key-wrap">
-      <Kenban1 ref="keyRef1" class="kenban" />
-      <Kenban2 ref="keyRef2" class="kenban" />
-      <Kenban3 ref="keyRef3" class="kenban" />
+      <Kenban1 ref="keyRef1" class="kenban" @change-end="receiveChangeEnd1" />
+      <Kenban2 ref="keyRef2" class="kenban" @change-end="receiveChangeEnd2" />
+      <Kenban3 ref="keyRef3" class="kenban" @change-end="receiveChangeEnd3" />
     </div>
     <h3 v-if="changingNow" class="change-title">
       キー変更中(変更したいキーをクリックしてね)<br />
@@ -61,20 +61,26 @@ export default {
       this.$refs.keyRef2.changeReceive();
       this.$refs.keyRef3.changeReceive();
     },
-    changeEnd1() {
-      this.$refs.keyRef2.changeNow = false;
-      this.$refs.keyRef3.changeNow = false;
-      console.log('え');
+    receiveChangeEnd1() {
+      console.log('終わりを告げるやつ');
+      this.changingNow = false;
+      this.$refs.keyRef1.endChaging();
+      this.$refs.keyRef2.endChaging();
+      this.$refs.keyRef3.endChaging();
     },
-    changeEnd2() {
-      this.$refs.keyRef1.changeNow = false;
-      this.$refs.keyRef3.changeNow = false;
-      console.log('お');
+    receiveChangeEnd2() {
+      console.log('終わりを告げるやつ');
+      this.changingNow = false;
+      this.$refs.keyRef1.endChaging();
+      this.$refs.keyRef2.endChaging();
+      this.$refs.keyRef3.endChaging();
     },
-    changeEnd3() {
-      this.$refs.keyRef1.changeNow = false;
-      this.$refs.keyRef2.changeNow = false;
-      console.log('か');
+    receiveChangeEnd3() {
+      console.log('終わりを告げるやつ');
+      this.changingNow = false;
+      this.$refs.keyRef1.endChaging();
+      this.$refs.keyRef2.endChaging();
+      this.$refs.keyRef3.endChaging();
     },
     opening() {
       this.showContent = true;
