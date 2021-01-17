@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1><a class="title-link" href="/">3連キーボード</a></h1>
+    <h1><a class="title-link" href="/">3連シンセサイザー</a></h1>
     <button v-if="!showContent" class="setting-btn" type="button" @click="openModal">
       <i class="fa fa-cog mr-2"></i><span></span>
     </button>
