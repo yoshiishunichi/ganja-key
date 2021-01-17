@@ -10,7 +10,7 @@
           >指を離したら音を止める</label
         >
       </p>
-      <p><button class="change-key-btn">キー変更</button></p>
+      <p><button class="change-key-btn" @click="tapKeyChange">キー変更</button></p>
       <p><button @click="clickEvent">閉じる</button></p>
     </div>
   </div>
@@ -49,6 +49,10 @@ export default {
       if (e.key === 'Escape') {
         this.clickEvent();
       }
+    },
+    tapKeyChange() {
+      this.clickEvent();
+      this.$emit('child-change');
     },
   },
 };

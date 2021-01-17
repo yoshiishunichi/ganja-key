@@ -4,12 +4,14 @@
       @child-opening="opening"
       @child-closing="closing"
       @audio-to-main="receiveAudioFromHeader"
+      @change-serve="changeKey"
     />
     <div class="key-wrap">
-      <Kenban1 ref="keyRef1" class="kenban" @changekey="changeKeyNow1" @change-end="changeEnd1" />
-      <Kenban2 ref="keyRef2" class="kenban" @changekey="changeKeyNow2" @change-end="changeEnd2" />
-      <Kenban3 ref="keyRef3" class="kenban" @changekey="changeKeyNow3" @change-end="changeEnd3" />
+      <Kenban1 ref="keyRef1" class="kenban" />
+      <Kenban2 ref="keyRef2" class="kenban" />
+      <Kenban3 ref="keyRef3" class="kenban" />
     </div>
+    <h3 v-if="changingNow" class="change-title">キー変更中</h3>
   </div>
 </template>
 
@@ -32,9 +34,13 @@ export default {
       showContent: false,
       releaseStop: false,
       audioData: null,
+      changingNow: false,
     };
   },
   methods: {
+    changeKey() {
+      this.changingNow = true;
+    },
     changeKeyNow1() {
       this.$refs.keyRef2.changeNow = true;
       this.$refs.keyRef3.changeNow = true;
@@ -120,6 +126,11 @@ body {
 <style scoped>
 .container {
   height: 100%;
+}
+
+.change-title {
+  padding-top: 20px;
+  color: white;
 }
 
 .key-wrap {

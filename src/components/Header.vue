@@ -9,6 +9,7 @@
       ref="modalRef"
       @modal-close="closeModal"
       @audio-to-header="receiveAudioFromModal"
+      @child-change="changeReceive"
     />
   </header>
 </template>
@@ -42,6 +43,9 @@ export default {
     receiveAudioFromModal(audiodata) {
       this.audioData = audiodata;
       this.$emit('audio-to-main', this.audioData);
+    },
+    changeReceive() {
+      this.$emit('change-serve');
     },
   },
 };

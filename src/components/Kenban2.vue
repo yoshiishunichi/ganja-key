@@ -175,7 +175,6 @@ export default {
         this.actives[num].changing = true;
         this.changeNow = true;
         this.changeNum = num;
-        this.$emit('changekey');
       }
     },
     receiveModalStatus(showContent) {
@@ -225,7 +224,6 @@ export default {
         this.actives[this.changeNum].changing = false;
         this.changeNow = false;
         this.changeNum = null;
-        this.$emit('change-end');
       }
     },
     keyUp(e) {
