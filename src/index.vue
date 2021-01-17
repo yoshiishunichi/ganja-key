@@ -6,9 +6,9 @@
       @audio-to-main="receiveAudioFromHeader"
     />
     <div class="key-wrap">
-      <Kenban1 ref="keyRef1" class="kenban" />
-      <Kenban2 ref="keyRef2" class="kenban" />
-      <Kenban3 ref="keyRef3" class="kenban" />
+      <Kenban1 ref="keyRef1" class="kenban" @changekey="changeKeyNow1" @change-end="changeEnd1" />
+      <Kenban2 ref="keyRef2" class="kenban" @changekey="changeKeyNow2" @change-end="changeEnd2" />
+      <Kenban3 ref="keyRef3" class="kenban" @changekey="changeKeyNow3" @change-end="changeEnd3" />
     </div>
   </div>
 </template>
@@ -35,6 +35,36 @@ export default {
     };
   },
   methods: {
+    changeKeyNow1() {
+      this.$refs.keyRef2.changeNow = true;
+      this.$refs.keyRef3.changeNow = true;
+      console.log('あ');
+    },
+    changeKeyNow2() {
+      this.$refs.keyRef1.changeNow = true;
+      this.$refs.keyRef3.changeNow = true;
+      console.log('い');
+    },
+    changeKeyNow3() {
+      this.$refs.keyRef1.changeNow = true;
+      this.$refs.keyRef2.changeNow = true;
+      console.log('う');
+    },
+    changeEnd1() {
+      this.$refs.keyRef2.changeNow = false;
+      this.$refs.keyRef3.changeNow = false;
+      console.log('え');
+    },
+    changeEnd2() {
+      this.$refs.keyRef1.changeNow = false;
+      this.$refs.keyRef3.changeNow = false;
+      console.log('お');
+    },
+    changeEnd3() {
+      this.$refs.keyRef1.changeNow = false;
+      this.$refs.keyRef2.changeNow = false;
+      console.log('か');
+    },
     opening() {
       this.showContent = true;
       this.$refs.keyRef1.receiveModalStatus(this.showContent);

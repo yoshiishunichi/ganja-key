@@ -4,7 +4,7 @@
       ファイルを選択してください
       <input id="file_upload" type="file" accept="audio/*" @change="fileChange($event)" />
     </label>
-    <p v-if="audioData" class="sample">サンプル</p>
+    <p v-if="audioData" class="sample">〜サンプル〜</p>
     <audio v-if="audioData" controls :src="audioData">
       Your browser does not support the
       <code>audio</code> element.
@@ -23,17 +23,12 @@ export default {
   },
   methods: {
     fileChange(e) {
-      console.log('filechange呼ばれたよ');
       if (e) {
-        console.log('ファイルあり');
         this.files = e.target.files;
-        // ファイルが選択されたかチェック
         if (this.files.length > 0) {
           const file = this.files[0];
-          // ファイルリーダーを使って音声を読み込み
           const reader = new FileReader();
           reader.onload = (e) => {
-            // audioDataに格納
             this.audioData = e.target.result;
             this.$emit('audio-serve', this.audioData);
           };
@@ -58,16 +53,18 @@ label > input {
 }
 
 label {
+  user-select: none;
   width: 180px;
   height: 30px;
   line-height: 30px;
   display: block;
   cursor: pointer;
-  background: rgb(50, 150, 220);
-  border: solid 1px #aaa;
-  border-radius: 5px;
+  background: white;
+  border: solid 3px rgb(255, 208, 21);
+  border-radius: 10px;
   font-size: 13px;
-  color: #fff;
+  font-weight: bold;
+  color: rgb(255, 208, 21);
   font-weight: bold;
   text-align: center;
   margin: 0 auto;
@@ -79,14 +76,20 @@ label:hover {
 
 .sample {
   text-align: center;
+  font-size: 10px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-weight: bold;
+  user-select: none;
 }
 
 audio {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
   width: 240px;
   height: 40px;
+  border: 2px solid rgb(255, 208, 21);
+  border-radius: 20px;
 }
 </style>

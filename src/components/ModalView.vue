@@ -2,8 +2,8 @@
   <div id="overlay" @click="clickEvent">
     <div id="modalwindow" @click="stopEvent">
       <h2>設定</h2>
-      <InputMusic @audio-serve="receiveAudioData" />
-      <p>
+      <InputMusic class="audioreceiver" @audio-serve="receiveAudioData" />
+      <p class="release-stop-text">
         <input id="stopsound" v-model="releasestop" type="checkbox" /><label
           for="stopsound"
           class="stopsoundlabel"
@@ -54,6 +54,23 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  user-select: none;
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+  border-bottom: solid 1px #ccc;
+  width: 70%;
+  text-align: center;
+  padding: 8px;
+}
+
+.audioreceiver {
+  margin-top: 24px;
+}
+
 #overlay {
   z-index: 1;
   position: fixed;
@@ -61,7 +78,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +88,7 @@ export default {
   z-index: 2;
   width: 70%;
   padding: 1em;
-  background: #fff;
+  background: rgba(255, 255, 255, 1);
 }
 
 #stopsound {
@@ -80,5 +97,27 @@ export default {
 
 .stopsoundlabel {
   user-select: none;
+}
+
+.release-stop-text {
+  margin: 24px auto;
+}
+
+button {
+  user-select: none;
+  cursor: pointer;
+  max-width: 500px;
+  width: 80%;
+  height: 35px;
+  border: 2px solid #000;
+  border-radius: 15px;
+  outline: none;
+  font-weight: bold;
+  background: rgb(240, 220, 140);
+  color: #000;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 </style>

@@ -1,30 +1,102 @@
 <template>
   <div class="frame">
     <div class="key">
-      <div class="white-key" :class="{ actW: actives[0].active }"><p>1</p></div>
-      <div class="black-key" :class="{ actB: actives[1].active }"><p>2</p></div>
+      <div
+        class="white-key"
+        :class="{ actW: actives[0].active, changeW: actives[0].changing }"
+        @click="changeKey(0)"
+      >
+        <p>{{ keyCode[0].code.toUpperCase() }}</p>
+      </div>
+      <div
+        class="black-key"
+        :class="{ actB: actives[1].active, changeB: actives[1].changing }"
+        @click="changeKey(1)"
+      >
+        <p>{{ keyCode[1].code.toUpperCase() }}</p>
+      </div>
     </div>
     <div class="key">
-      <div class="white-key" :class="{ actW: actives[2].active }"><p>3</p></div>
-      <div class="black-key" :class="{ actB: actives[3].active }"><p>4</p></div>
+      <div
+        class="white-key"
+        :class="{ actW: actives[2].active, changeW: actives[2].changing }"
+        @click="changeKey(2)"
+      >
+        <p>{{ keyCode[2].code.toUpperCase() }}</p>
+      </div>
+      <div
+        class="black-key"
+        :class="{ actB: actives[3].active, changeB: actives[3].changing }"
+        @click="changeKey(3)"
+      >
+        <p>{{ keyCode[3].code.toUpperCase() }}</p>
+      </div>
     </div>
     <div class="key">
-      <div class="white-key" :class="{ actW: actives[4].active }"><p>5</p></div>
+      <div
+        class="white-key"
+        :class="{ actW: actives[4].active, changeW: actives[4].changing }"
+        @click="changeKey(4)"
+      >
+        <p>{{ keyCode[4].code.toUpperCase() }}</p>
+      </div>
     </div>
     <div class="key">
-      <div class="white-key" :class="{ actW: actives[5].active }"><p>6</p></div>
-      <div class="black-key" :class="{ actB: actives[6].active }"><p>7</p></div>
+      <div
+        class="white-key"
+        :class="{ actW: actives[5].active, changeW: actives[5].changing }"
+        @click="changeKey(5)"
+      >
+        <p>{{ keyCode[5].code.toUpperCase() }}</p>
+      </div>
+      <div
+        class="black-key"
+        :class="{ actB: actives[6].active, changeB: actives[6].changing }"
+        @click="changeKey(6)"
+      >
+        <p>{{ keyCode[6].code.toUpperCase() }}</p>
+      </div>
     </div>
     <div class="key">
-      <div class="white-key" :class="{ actW: actives[7].active }"><p>8</p></div>
-      <div class="black-key" :class="{ actB: actives[8].active }"><p>9</p></div>
+      <div
+        class="white-key"
+        :class="{ actW: actives[7].active, changeW: actives[7].changing }"
+        @click="changeKey(7)"
+      >
+        <p>{{ keyCode[7].code.toUpperCase() }}</p>
+      </div>
+      <div
+        class="black-key"
+        :class="{ actB: actives[8].active, changeB: actives[8].changing }"
+        @click="changeKey(8)"
+      >
+        <p>{{ keyCode[8].code.toUpperCase() }}</p>
+      </div>
     </div>
     <div class="key">
-      <div class="white-key" :class="{ actW: actives[9].active }"><p>0</p></div>
-      <div class="black-key" :class="{ actB: actives[10].active }"><p>-</p></div>
+      <div
+        class="white-key"
+        :class="{ actW: actives[9].active, changeW: actives[9].changing }"
+        @click="changeKey(9)"
+      >
+        <p>{{ keyCode[9].code.toUpperCase() }}</p>
+      </div>
+      <div
+        class="black-key"
+        :class="{ actB: actives[10].active, changeB: actives[10].changing }"
+        @click="changeKey(10)"
+      >
+        <p>{{ keyCode[10].code.toUpperCase() }}</p>
+      </div>
     </div>
     <div class="key">
-      <div class="white-key" :class="{ actW: actives[11].active }"><p>^</p></div>
+      <div
+        class="white-key"
+        :class="{ actW: actives[11].active, changeW: actives[11].changing }"
+        @click="changeKey(11)"
+      >
+        <p>{{ keyCode[11].code.toUpperCase() }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -35,18 +107,18 @@ export default {
   data: function () {
     return {
       actives: [
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
       ],
       keyCode: [
         { code: '1' },
@@ -69,6 +141,8 @@ export default {
       openingView: false,
       releaseStop: false,
       audioData: null,
+      changeNow: false,
+      changeNum: null,
     };
   },
   mounted() {
@@ -87,6 +161,24 @@ export default {
     window.removeEventListener('keyup', this.keyUp);
   },
   methods: {
+    changeKey(num) {
+      let count = 0;
+      for (let i = 0; i < 12; i++) {
+        if (this.actives[i].changing) {
+          count++;
+          if (i === num) {
+            this.actives[num].changing = false;
+            this.changeNow = false;
+          }
+        }
+      }
+      if (count === 0) {
+        this.actives[num].changing = true;
+        this.changeNow = true;
+        this.changeNum = num;
+        this.$emit('changekey');
+      }
+    },
     receiveModalStatus(showContent) {
       this.openingView = showContent;
     },
@@ -123,12 +215,18 @@ export default {
     keyDown(e) {
       for (let i = 0; i < 12; i++) {
         if (e.key === this.keyCode[i].code) {
-          if (!this.actives[i].active && !this.openingView) {
-            console.log(e.key);
+          if (!this.actives[i].active && !this.openingView && !this.changeNow) {
             this.play(this.do, -12 + i);
             this.actives[i].active = true;
           }
         }
+      }
+      if (this.changeNow && this.changeNum) {
+        this.keyCode[this.changeNum].code = e.key;
+        this.actives[this.changeNum].changing = false;
+        this.changeNow = false;
+        this.changeNum = null;
+        this.$emit('change-end');
       }
     },
     keyUp(e) {
@@ -157,6 +255,7 @@ export default {
   width: 60px;
   height: 200px;
   float: left;
+  cursor: pointer;
 }
 
 .black-key {
@@ -206,5 +305,13 @@ p {
 
 .actB {
   background: rgb(116, 106, 20);
+}
+
+.changeW {
+  background: rgb(171, 212, 255);
+}
+
+.changeB {
+  background: rgb(0, 80, 167);
 }
 </style>
