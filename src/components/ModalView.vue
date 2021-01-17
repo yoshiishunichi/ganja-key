@@ -10,6 +10,7 @@
           >指を離したら音を止める</label
         >
       </p>
+      <p><button class="change-key-btn">キー変更</button></p>
       <p><button @click="clickEvent">閉じる</button></p>
     </div>
   </div>
