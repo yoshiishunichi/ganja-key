@@ -47,23 +47,19 @@ export default {
     window.removeEventListener('keydown', this.keyDown);
   },
   methods: {
+    keyDown(e) {
+      if (e.key === 'Enter' && this.changingNow) {
+        this.changingNow = false;
+        this.$refs.keyRef1.endChaging();
+        this.$refs.keyRef2.endChaging();
+        this.$refs.keyRef3.endChaging();
+      }
+    },
     changeKey() {
       this.changingNow = true;
-    },
-    changeKeyNow1() {
-      this.$refs.keyRef2.changeNow = true;
-      this.$refs.keyRef3.changeNow = true;
-      console.log('あ');
-    },
-    changeKeyNow2() {
-      this.$refs.keyRef1.changeNow = true;
-      this.$refs.keyRef3.changeNow = true;
-      console.log('い');
-    },
-    changeKeyNow3() {
-      this.$refs.keyRef1.changeNow = true;
-      this.$refs.keyRef2.changeNow = true;
-      console.log('う');
+      this.$refs.keyRef1.changeReceive();
+      this.$refs.keyRef2.changeReceive();
+      this.$refs.keyRef3.changeReceive();
     },
     changeEnd1() {
       this.$refs.keyRef2.changeNow = false;
@@ -141,6 +137,7 @@ body {
   font-size: 17px;
   padding-top: 20px;
   color: white;
+  user-select: none;
 }
 
 .key-wrap {

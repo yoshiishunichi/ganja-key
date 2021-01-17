@@ -161,20 +161,21 @@ export default {
   },
   methods: {
     changeKey(num) {
-      let count = 0;
+      if (this.changeNow) {
+        this.actives[num].changing = !this.actives[num].changing;
+      }
+    },
+    changeReceive() {
+      console.log('変更の通知受け取ったよ3');
+      this.changeNow = true;
+    },
+    endChaging() {
+      console.log('変更の終了を受け取ったよ3');
+      this.changeNow = false;
       for (let i = 0; i < 12; i++) {
         if (this.actives[i].changing) {
-          count++;
-          if (i === num) {
-            this.actives[num].changing = false;
-            this.changeNow = false;
-          }
+          this.actives[i].changing = false;
         }
-      }
-      if (count === 0) {
-        this.actives[num].changing = true;
-        this.changeNow = true;
-        this.changeNum = num;
       }
     },
     receiveModalStatus(showContent) {
