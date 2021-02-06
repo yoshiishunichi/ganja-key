@@ -68,14 +68,14 @@ label {
   color: rgb(50, 70, 120);
   font-weight: bold;
   text-align: center;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 label:hover {
   opacity: 0.8;
 }
 
-.sample {
+p {
   text-align: center;
   font-size: 10px;
   margin-top: 10px;

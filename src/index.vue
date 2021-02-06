@@ -130,6 +130,11 @@ export default {
 </script>
 
 <style>
+* {
+  padding: 0;
+  margin: 0;
+}
+
 html {
   width: 100vw;
   height: 100vh;
@@ -138,6 +143,7 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
 }
@@ -158,11 +164,11 @@ body {
   height: 100%;
 }
 
-.change-title {
-  font-size: 17px;
-  padding-top: 20px;
+h3 {
+  font-size: 15px;
   color: white;
   user-select: none;
+  margin: 15px 0;
 }
 
 .key-wrap {

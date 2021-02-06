@@ -10,8 +10,8 @@
           >指を離したら音を止める</label
         >
       </p>
-      <p><button class="change-key-btn" @click="tapKeyChange">キー変更</button></p>
-      <p><button @click="clickEvent">閉じる</button></p>
+      <button class="change-key-btn" @click="tapKeyChange">キー変更</button>
+      <button @click="clickEvent">閉じる</button>
     </div>
   </div>
 </template>
@@ -101,6 +101,7 @@ h2 {
 
 #stopsound {
   outline: none;
+  margin-right: 6px;
 }
 
 .stopsoundlabel {
@@ -124,6 +125,7 @@ button {
   font-weight: bold;
   background: rgb(50, 70, 120);
   color: #fff;
+  margin: 12px auto;
 }
 
 button:hover {
