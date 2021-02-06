@@ -155,20 +155,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin: 0;
 }
 </style>
 
 <style scoped>
 .container {
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 h3 {
-  font-size: 15px;
+  font-size: 9px;
   color: white;
   user-select: none;
-  margin: 15px 0;
+  margin: 9px 0;
 }
 
 .key-wrap {
@@ -176,8 +176,38 @@ h3 {
 }
 
 .kenban {
-  margin-bottom: 15px;
+  margin-bottom: 9px;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media screen and (min-height: 600px) {
+  h3 {
+    font-size: 12px;
+    color: white;
+    user-select: none;
+    margin: 12px 0;
+  }
+
+  .kenban {
+    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-height: 800px) {
+  h3 {
+    font-size: 15px;
+    color: white;
+    user-select: none;
+    margin: 15px 0;
+  }
+
+  .kenban {
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

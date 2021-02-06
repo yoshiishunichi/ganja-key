@@ -271,13 +271,13 @@ export default {
 .frame {
   display: block;
   width: 420px;
-  height: 200px;
+  height: 100px;
 }
 
 .key {
   position: relative;
   width: 60px;
-  height: 200px;
+  height: 100px;
   float: left;
 }
 
@@ -293,7 +293,7 @@ export default {
   border-radius: 0 0 10px 10px;
   background-color: #000;
   width: 50px;
-  height: 100px;
+  height: 50px;
   z-index: 100;
 }
 
@@ -306,24 +306,80 @@ export default {
   border: 2px solid #aaa;
   border-top: none;
   width: 58px;
-  height: 200px;
+  height: 100px;
 }
 
 .black-key p {
-  margin-top: 70px;
+  margin-top: 30px;
   color: white;
 }
 
 .white-key p {
-  margin-top: 170px;
+  margin-top: 75px;
   color: black;
 }
 
 p {
-  font-size: 14px;
+  font-size: 12px;
   margin-left: auto;
   margin-right: auto;
   user-select: none;
+}
+
+@media screen and (min-height: 600px) {
+  .frame {
+    height: 150px;
+  }
+
+  .key {
+    height: 150px;
+  }
+
+  .black-key {
+    height: 75px;
+  }
+
+  .white-key {
+    height: 150px;
+  }
+
+  .black-key p {
+    margin-top: 50px;
+  }
+
+  .white-key p {
+    margin-top: 120px;
+  }
+}
+
+@media screen and (min-height: 800px) {
+  .frame {
+    height: 200px;
+  }
+
+  .key {
+    height: 200px;
+  }
+
+  .black-key {
+    height: 100px;
+  }
+
+  .white-key {
+    height: 200px;
+  }
+
+  .black-key p {
+    margin-top: 70px;
+  }
+
+  .white-key p {
+    margin-top: 170px;
+  }
+
+  p {
+    font-size: 15px;
+  }
 }
 
 .actW {
