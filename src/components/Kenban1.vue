@@ -185,6 +185,7 @@ export default {
     },
     endChaging() {
       console.log('変更の終了を受け取ったよ1');
+      this.changeNum = [];
       this.changeNow = false;
       for (let i = 0; i < 12; i++) {
         if (this.actives[i].changing) {
@@ -238,8 +239,7 @@ export default {
         }
       }
       if (this.changeNow && e.key != 'Enter') {
-        console.log('変更', e.key);
-        console.log('変更前のchangeNum:', this.changeNum);
+        console.log('変更1', e.key);
         for (let i = 0; i < 12; i++) {
           if (this.actives[i].changing) {
             this.keyCode[i].code = e.key;
@@ -251,7 +251,6 @@ export default {
         this.changeNow = false;
         this.endChaging();
         this.$emit('change-end');
-        console.log('変更後のchangeNum:', this.changeNum);
       }
     },
     keyUp(e) {

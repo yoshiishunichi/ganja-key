@@ -65,21 +65,15 @@ export default {
       console.log('終わりを告げるやつ');
       this.changingNow = false;
       this.$refs.keyRef1.endChaging();
-      this.$refs.keyRef2.endChaging();
-      this.$refs.keyRef3.endChaging();
     },
     receiveChangeEnd2() {
       console.log('終わりを告げるやつ');
       this.changingNow = false;
-      this.$refs.keyRef1.endChaging();
       this.$refs.keyRef2.endChaging();
-      this.$refs.keyRef3.endChaging();
     },
     receiveChangeEnd3() {
       console.log('終わりを告げるやつ');
       this.changingNow = false;
-      this.$refs.keyRef1.endChaging();
-      this.$refs.keyRef2.endChaging();
       this.$refs.keyRef3.endChaging();
     },
     opening() {
