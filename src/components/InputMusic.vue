@@ -54,17 +54,18 @@ label > input {
 
 label {
   user-select: none;
-  width: 180px;
+  max-width: 400px;
+  width: 100%;
   height: 30px;
   line-height: 30px;
   display: block;
   cursor: pointer;
   background: white;
-  border: solid 3px rgb(255, 208, 21);
-  border-radius: 10px;
+  border: solid 3px rgb(50, 70, 120);
+  border-radius: 15px;
   font-size: 13px;
   font-weight: bold;
-  color: rgb(255, 208, 21);
+  color: rgb(50, 70, 120);
   font-weight: bold;
   text-align: center;
   margin: 0 auto;
@@ -87,9 +88,10 @@ audio {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 240px;
+  width: 100%;
+  max-width: 240px;
   height: 40px;
-  border: 2px solid rgb(255, 208, 21);
+  border: 2px solid rgb(50, 70, 120);
   border-radius: 20px;
 }
 </style>

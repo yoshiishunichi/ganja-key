@@ -109,20 +109,21 @@ h2 {
 
 .release-stop-text {
   margin: 24px auto;
+  font-weight: bold;
 }
 
 button {
   user-select: none;
   cursor: pointer;
-  max-width: 500px;
+  max-width: 400px;
   width: 80%;
   height: 35px;
   border: 2px solid #000;
   border-radius: 15px;
   outline: none;
   font-weight: bold;
-  background: rgb(240, 220, 140);
-  color: #000;
+  background: rgb(50, 70, 120);
+  color: #fff;
 }
 
 button:hover {
