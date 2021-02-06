@@ -1,7 +1,13 @@
 <template>
   <header>
     <h1><a class="title-link" href="/">3連キーボード図柄</a></h1>
-    <button v-if="!showContent" class="setting-btn" type="button" @click="openModal">
+    <button
+      v-if="!showContent"
+      v-show="!changing"
+      class="setting-btn"
+      type="button"
+      @click="openModal"
+    >
       <i class="fa fa-cog mr-2"></i><span></span>
     </button>
     <ModalView
@@ -27,6 +33,7 @@ export default {
       showContent: false,
       releasestop: false,
       audioData: null,
+      changing: false,
     };
   },
   methods: {
@@ -46,6 +53,12 @@ export default {
     },
     changeReceive() {
       this.$emit('change-serve');
+    },
+    toChanging() {
+      this.changing = true;
+    },
+    toNotChanging() {
+      this.changing = false;
     },
   },
 };

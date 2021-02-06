@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <Header
+      ref="headerRef"
       @child-opening="opening"
       @child-closing="closing"
       @audio-to-main="receiveAudioFromHeader"
@@ -59,9 +60,18 @@ export default {
       if (this.changeCancel) {
         this.changeCancel = false;
       }
+      if (this.changeFinish) {
+        setTimeout(() => {
+          this.changeFinish = false;
+        }, 2000);
+      }
       if (e.key === 'Enter' && this.changingNow) {
         this.changingNow = false;
+        this.$refs.headerRef.toNotChanging();
         this.changeCancel = true;
+        setTimeout(() => {
+          this.changeCancel = false;
+        }, 2000);
         this.$refs.keyRef1.endChaging();
         this.$refs.keyRef2.endChaging();
         this.$refs.keyRef3.endChaging();
@@ -69,6 +79,9 @@ export default {
     },
     changeKey() {
       this.changingNow = true;
+      this.$refs.headerRef.toChanging();
+      this.changeCancel = false;
+      this.changeFinish = false;
       this.$refs.keyRef1.changeReceive();
       this.$refs.keyRef2.changeReceive();
       this.$refs.keyRef3.changeReceive();
@@ -77,6 +90,7 @@ export default {
       this.changedKey = key;
       this.changeFinish = true;
       this.changingNow = false;
+      this.$refs.headerRef.toNotChanging();
       this.$refs.keyRef1.endChaging();
     },
     receiveChangeEnd2() {
