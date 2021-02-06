@@ -1,6 +1,6 @@
 <template>
   <div class="frame">
-    <div class="key">
+    <div class="key" :class="{ pointerKey: changeNow }">
       <div
         class="white-key"
         :class="{ actW: actives[0].active, changeW: actives[0].changing }"
@@ -16,7 +16,7 @@
         <p>{{ keyCode[1].code.toUpperCase() }}</p>
       </div>
     </div>
-    <div class="key">
+    <div class="key" :class="{ pointerKey: changeNow }">
       <div
         class="white-key"
         :class="{ actW: actives[2].active, changeW: actives[2].changing }"
@@ -32,7 +32,7 @@
         <p>{{ keyCode[3].code.toUpperCase() }}</p>
       </div>
     </div>
-    <div class="key">
+    <div class="key" :class="{ pointerKey: changeNow }">
       <div
         class="white-key"
         :class="{ actW: actives[4].active, changeW: actives[4].changing }"
@@ -41,7 +41,7 @@
         <p>{{ keyCode[4].code.toUpperCase() }}</p>
       </div>
     </div>
-    <div class="key">
+    <div class="key" :class="{ pointerKey: changeNow }">
       <div
         class="white-key"
         :class="{ actW: actives[5].active, changeW: actives[5].changing }"
@@ -57,7 +57,7 @@
         <p>{{ keyCode[6].code.toUpperCase() }}</p>
       </div>
     </div>
-    <div class="key">
+    <div class="key" :class="{ pointerKey: changeNow }">
       <div
         class="white-key"
         :class="{ actW: actives[7].active, changeW: actives[7].changing }"
@@ -73,7 +73,7 @@
         <p>{{ keyCode[8].code.toUpperCase() }}</p>
       </div>
     </div>
-    <div class="key">
+    <div class="key" :class="{ pointerKey: changeNow }">
       <div
         class="white-key"
         :class="{ actW: actives[9].active, changeW: actives[9].changing }"
@@ -89,7 +89,7 @@
         <p>{{ keyCode[10].code.toUpperCase() }}</p>
       </div>
     </div>
-    <div class="key">
+    <div class="key" :class="{ pointerKey: changeNow }">
       <div
         class="white-key"
         :class="{ actW: actives[11].active, changeW: actives[11].changing }"
@@ -279,6 +279,9 @@ export default {
   width: 60px;
   height: 200px;
   float: left;
+}
+
+.pointerKey {
   cursor: pointer;
 }
 
