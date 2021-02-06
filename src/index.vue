@@ -12,9 +12,12 @@
       <Kenban3 ref="keyRef3" class="kenban" @change-end="receiveChangeEnd3" />
     </div>
     <h3 v-if="changingNow" class="change-title">
-      キー変更中(変更したいキーをクリックしてね)<br />
-      Enterで終了
+      キー変更中<br />
+      (画面で変更したいキーを選択して、キーボードを押してね)<br />
+      Enterでキャンセル
     </h3>
+    <h3 v-if="changeCancel" class="change-title">キャンセル完了</h3>
+    <ChangeFinishDeclare v-if="changeFinish" :changed-key="changedKey" />
   </div>
 </template>
 
@@ -23,6 +26,7 @@ import Header from './components/Header.vue';
 import Kenban1 from './components/Kenban1.vue';
 import Kenban2 from './components/Kenban2.vue';
 import Kenban3 from './components/Kenban3.vue';
+import ChangeFinishDeclare from './components/ChangeFinishDeclare.vue';
 
 export default {
   name: 'App',
@@ -31,6 +35,7 @@ export default {
     Kenban1,
     Kenban2,
     Kenban3,
+    ChangeFinishDeclare,
   },
   data() {
     return {
@@ -38,6 +43,9 @@ export default {
       releaseStop: false,
       audioData: null,
       changingNow: false,
+      changeCancel: false,
+      changeFinish: false,
+      changedKey: '',
     };
   },
   mounted() {
@@ -48,8 +56,12 @@ export default {
   },
   methods: {
     keyDown(e) {
+      if (this.changeCancel) {
+        this.changeCancel = false;
+      }
       if (e.key === 'Enter' && this.changingNow) {
         this.changingNow = false;
+        this.changeCancel = true;
         this.$refs.keyRef1.endChaging();
         this.$refs.keyRef2.endChaging();
         this.$refs.keyRef3.endChaging();
@@ -61,18 +73,17 @@ export default {
       this.$refs.keyRef2.changeReceive();
       this.$refs.keyRef3.changeReceive();
     },
-    receiveChangeEnd1() {
-      console.log('終わりを告げるやつ');
+    receiveChangeEnd1(key) {
+      this.changedKey = key;
+      this.changeFinish = true;
       this.changingNow = false;
       this.$refs.keyRef1.endChaging();
     },
     receiveChangeEnd2() {
-      console.log('終わりを告げるやつ');
       this.changingNow = false;
       this.$refs.keyRef2.endChaging();
     },
     receiveChangeEnd3() {
-      console.log('終わりを告げるやつ');
       this.changingNow = false;
       this.$refs.keyRef3.endChaging();
     },

@@ -250,7 +250,7 @@ export default {
         this.changeNum = [];
         this.changeNow = false;
         this.endChaging();
-        this.$emit('change-end');
+        this.$emit('change-end', e.key.toUpperCase());
       }
     },
     keyUp(e) {
