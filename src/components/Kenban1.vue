@@ -226,6 +226,21 @@ export default {
       this.source[rate + 12].connect(this.ctx.destination);
       this.source[rate + 12].start();
     },
+    catchMeta(eventKey) {
+      if (
+        eventKey === 'Meta' ||
+        eventKey === 'Tab' ||
+        eventKey === 'Control' ||
+        eventKey === 'Shift' ||
+        eventKey === 'Alt' ||
+        eventKey === 'CapsLock' ||
+        eventKey === 'Escape'
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     keyDown(e) {
       for (let i = 0; i < 12; i++) {
         if (
@@ -238,7 +253,7 @@ export default {
           this.actives[i].active = true;
         }
       }
-      if (this.changeNow && e.key != 'Enter') {
+      if (this.changeNow && e.key != 'Enter' && !this.catchMeta(e.key)) {
         console.log('変更1', e.key);
         for (let i = 0; i < 12; i++) {
           if (this.actives[i].changing) {
