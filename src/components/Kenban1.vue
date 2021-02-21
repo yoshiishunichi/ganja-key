@@ -241,10 +241,28 @@ export default {
         return false;
       }
     },
+    simplificKey(eventKey) {
+      switch (eventKey) {
+        case ' ':
+          return 'Space';
+        case 'ArrowUp':
+          return '↑';
+        case 'ArrowDown':
+          return '↓';
+        case 'ArrowRight':
+          return '→';
+        case 'ArrowLeft':
+          return '←';
+        case 'Backspace':
+          return 'Del';
+        default:
+          return false;
+      }
+    },
     keyDown(e) {
       for (let i = 0; i < 12; i++) {
         if (
-          e.key === this.keyCode[i].code &&
+          (e.key === this.keyCode[i].code || this.simplificKey(e.key) === this.keyCode[i].code) &&
           !this.actives[i].active &&
           !this.openingView &&
           !this.changeNow
@@ -257,7 +275,11 @@ export default {
         console.log('変更1', e.key);
         for (let i = 0; i < 12; i++) {
           if (this.actives[i].changing) {
-            this.keyCode[i].code = e.key;
+            if (this.simplificKey(e.key)) {
+              this.keyCode[i].code = this.simplificKey(e.key);
+            } else {
+              this.keyCode[i].code = e.key;
+            }
             this.actives[i].changing = false;
             console.log('i:', i);
           }
@@ -270,7 +292,7 @@ export default {
     },
     keyUp(e) {
       for (let i = 0; i < 12; i++) {
-        if (e.key === this.keyCode[i].code) {
+        if (e.key === this.keyCode[i].code || this.simplificKey(e.key) === this.keyCode[i].code) {
           if (this.actives[i].active && this.releaseStop) {
             this.source[i].stop();
           }
