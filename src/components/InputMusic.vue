@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label for="file_upload">
+    <label for="file_upload" class="choice-file">
       ファイルを選択してください
       <input id="file_upload" type="file" accept="audio/*" @change="fileChange($event)" />
     </label>
@@ -9,6 +9,7 @@
       Your browser does not support the
       <code>audio</code> element.
     </audio>
+    <button v-if="audioData" @click="deleteAudio">選択したファイルをキャンセル</button>
   </div>
 </template>
 
@@ -21,7 +22,16 @@ export default {
       audioData: '',
     };
   },
+  mounted() {
+    this.audioData = localStorage.audio;
+    this.$emit('audio-serve', this.audioData);
+  },
   methods: {
+    deleteAudio() {
+      this.audioData = '';
+      this.$emit('audio-serve', this.audioData);
+      localStorage.audio = this.audioData;
+    },
     fileChange(e) {
       if (e) {
         this.files = e.target.files;
@@ -31,16 +41,19 @@ export default {
           reader.onload = (e) => {
             this.audioData = e.target.result;
             this.$emit('audio-serve', this.audioData);
+            localStorage.audio = this.audioData;
           };
           reader.readAsDataURL(file);
         } else {
           this.audioData = '';
           this.$emit('audio-serve', this.audioData);
+          localStorage.audio = this.audioData;
         }
       } else {
         this.audioData = '';
         this.files = null;
         this.$emit('audio-serve', this.audioData);
+        localStorage.audio = this.audioData;
       }
     },
   },
@@ -52,7 +65,7 @@ label > input {
   display: none;
 }
 
-label {
+.choice-file {
   user-select: none;
   max-width: 400px;
   width: 100%;
@@ -71,7 +84,7 @@ label {
   margin: 10px auto;
 }
 
-label:hover {
+.choice-file:hover {
   opacity: 0.8;
 }
 
@@ -93,5 +106,24 @@ audio {
   height: 40px;
   border: 2px solid rgb(50, 70, 120);
   border-radius: 20px;
+}
+
+button {
+  user-select: none;
+  cursor: pointer;
+  max-width: 400px;
+  width: 80%;
+  height: 35px;
+  border: 2px solid #000;
+  border-radius: 15px;
+  outline: none;
+  font-weight: bold;
+  background: rgb(50, 70, 120);
+  color: #fff;
+  margin: 12px auto;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 </style>

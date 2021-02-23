@@ -11,7 +11,7 @@
         >
       </p>
       <button class="change-key-btn" @click="tapKeyChange">キー変更</button>
-      <button class="default-btn" @click="tapKeyDefault">デフォルトに戻す</button>
+      <button class="default-btn" @click="tapKeyDefault">配列をデフォルトに戻す</button>
       <button @click="clickEvent">閉じる</button>
     </div>
   </div>
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      releasestop: 'false',
+      releasestop: null,
       audioData: null,
     };
   },
@@ -114,8 +114,9 @@ h2 {
 }
 
 .release-stop-text {
-  margin: 24px auto;
+  margin: 12px auto;
   font-weight: bold;
+  font-size: 15px;
 }
 
 button {

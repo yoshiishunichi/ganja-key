@@ -147,13 +147,9 @@ export default {
     };
   },
   mounted() {
-    window
-      .fetch(this.url)
-      .then((response) => response.arrayBuffer())
-      .then((arrayBuffer) => this.ctx.decodeAudioData(arrayBuffer))
-      .then((audioBuffer) => {
-        this.do = audioBuffer;
-      });
+    if (localStorage.keys1) {
+      this.keyCode = JSON.parse(localStorage.keys1);
+    }
     window.addEventListener('keydown', this.keyDown);
     window.addEventListener('keyup', this.keyUp);
   },
@@ -184,6 +180,7 @@ export default {
       for (let i = 0; i < 12; i++) {
         this.keyCode[i].code = this.defaultKeyCode[i];
       }
+      localStorage.keys1 = JSON.stringify(this.keyCode);
     },
     changeReceive() {
       this.changeNow = true;
@@ -276,7 +273,6 @@ export default {
         }
       }
       if (this.changeNow && e.key != 'Enter' && !this.catchMeta(e.key)) {
-        console.log('変更1', e.key);
         for (let i = 0; i < 12; i++) {
           if (this.actives[i].changing) {
             if (this.simplificKey(e.key)) {
@@ -288,6 +284,7 @@ export default {
             console.log('i:', i);
           }
         }
+        localStorage.keys1 = JSON.stringify(this.keyCode);
         this.changeNum = [];
         this.changeNow = false;
         this.endChaging();

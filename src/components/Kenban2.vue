@@ -145,14 +145,10 @@ export default {
       changeNum: [],
     };
   },
-  created() {
-    window
-      .fetch(this.url)
-      .then((response) => response.arrayBuffer())
-      .then((arrayBuffer) => this.ctx.decodeAudioData(arrayBuffer))
-      .then((audioBuffer) => {
-        this.do = audioBuffer;
-      });
+  mounted() {
+    if (localStorage.keys2) {
+      this.keyCode = JSON.parse(localStorage.keys2);
+    }
     window.addEventListener('keydown', this.keyDown);
     window.addEventListener('keyup', this.keyUp);
   },
@@ -183,6 +179,7 @@ export default {
       for (let i = 0; i < 12; i++) {
         this.keyCode[i].code = this.defaultKeyCode[i];
       }
+      localStorage.keys2 = JSON.stringify(this.keyCode);
     },
     changeReceive() {
       console.log('変更の通知受け取ったよ2');
@@ -277,7 +274,6 @@ export default {
         }
       }
       if (this.changeNow && e.key != 'Enter' && !this.catchMeta(e.key)) {
-        console.log('変更2', e.key);
         for (let i = 0; i < 12; i++) {
           if (this.actives[i].changing) {
             if (this.simplificKey(e.key)) {
@@ -289,10 +285,15 @@ export default {
             console.log('i:', i);
           }
         }
+        localStorage.keys2 = JSON.stringify(this.keyCode);
         this.changeNum = [];
         this.changeNow = false;
         this.endChaging();
-        this.$emit('change-end');
+        if (this.simplificKey(e.key)) {
+          this.$emit('change-end', this.simplificKey(e.key).toUpperCase());
+        } else {
+          this.$emit('change-end', e.key.toUpperCase());
+        }
       }
     },
     keyUp(e) {
