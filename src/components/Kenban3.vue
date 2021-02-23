@@ -107,18 +107,32 @@ export default {
   data() {
     return {
       actives: [
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
-        { active: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+        { active: false, changing: false },
+      ],
+      defaultKeyCode: [
+        { code: 'a' },
+        { code: 's' },
+        { code: 'd' },
+        { code: 'f' },
+        { code: 'g' },
+        { code: 'h' },
+        { code: 'j' },
+        { code: 'k' },
+        { code: 'l' },
+        { code: ';' },
+        { code: ':' },
+        { code: ']' },
       ],
       keyCode: [
         { code: 'a' },
@@ -177,6 +191,9 @@ export default {
         }
       }
       console.log('変更する奴ら:', this.changeNum);
+    },
+    defaultReceive() {
+      this.keyCode = this.defaultKeyCode;
     },
     changeReceive() {
       console.log('変更の通知受け取ったよ3');
@@ -266,7 +283,7 @@ export default {
           !this.openingView &&
           !this.changeNow
         ) {
-          this.play(this.do, -12 + i);
+          this.play(this.do, 12 + i);
           this.actives[i].active = true;
         }
       }

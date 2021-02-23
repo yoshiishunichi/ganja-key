@@ -6,6 +6,7 @@
       @child-closing="closing"
       @audio-to-main="receiveAudioFromHeader"
       @change-serve="changeKey"
+      @default-serve="defaultKey"
     />
     <div class="key-wrap">
       <Kenban1 ref="keyRef1" class="kenban" @change-end="receiveChangeEnd1" />
@@ -76,6 +77,11 @@ export default {
         this.$refs.keyRef2.endChaging();
         this.$refs.keyRef3.endChaging();
       }
+    },
+    defaultKey() {
+      this.$refs.keyRef1.defaultReceive();
+      this.$refs.keyRef2.defaultReceive();
+      this.$refs.keyRef3.defaultReceive();
     },
     changeKey() {
       this.changingNow = true;

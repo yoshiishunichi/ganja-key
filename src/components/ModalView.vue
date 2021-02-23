@@ -11,6 +11,7 @@
         >
       </p>
       <button class="change-key-btn" @click="tapKeyChange">キー変更</button>
+      <button class="default-btn" @click="tapKeyDefault">デフォルトに戻す</button>
       <button @click="clickEvent">閉じる</button>
     </div>
   </div>
@@ -56,6 +57,10 @@ export default {
     tapKeyChange() {
       this.clickEvent();
       this.$emit('child-change');
+    },
+    tapKeyDefault() {
+      this.clickEvent();
+      this.$emit('child-default');
     },
   },
 };

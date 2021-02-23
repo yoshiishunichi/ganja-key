@@ -120,6 +120,20 @@ export default {
         { active: false, changing: false },
         { active: false, changing: false },
       ],
+      defaultKeyCode: [
+        { code: '1' },
+        { code: '2' },
+        { code: '3' },
+        { code: '4' },
+        { code: '5' },
+        { code: '6' },
+        { code: '7' },
+        { code: '8' },
+        { code: '9' },
+        { code: '0' },
+        { code: '-' },
+        { code: '^' },
+      ],
       keyCode: [
         { code: '1' },
         { code: '2' },
@@ -179,12 +193,13 @@ export default {
       }
       console.log('変更する奴ら:', this.changeNum);
     },
+    defaultReceive() {
+      this.keyCode = this.defaultKeyCode;
+    },
     changeReceive() {
-      console.log('変更の通知受け取ったよ1');
       this.changeNow = true;
     },
     endChaging() {
-      console.log('変更の終了を受け取ったよ1');
       this.changeNum = [];
       this.changeNow = false;
       for (let i = 0; i < 12; i++) {

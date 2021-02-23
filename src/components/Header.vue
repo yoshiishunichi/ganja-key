@@ -16,6 +16,7 @@
       @modal-close="closeModal"
       @audio-to-header="receiveAudioFromModal"
       @child-change="changeReceive"
+      @child-default="defaultReceive"
     />
   </header>
 </template>
@@ -53,6 +54,9 @@ export default {
     },
     changeReceive() {
       this.$emit('change-serve');
+    },
+    defaultReceive() {
+      this.$emit('default-serve');
     },
     toChanging() {
       this.changing = true;
