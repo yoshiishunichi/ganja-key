@@ -183,9 +183,7 @@ export default {
     defaultReceive() {
       for (let i = 0; i < 12; i++) {
         this.keyCode[i].code = this.defaultKeyCode[i];
-        console.log(this.defaultKeyCode[i]);
       }
-      console.log('デフォルトに戻す1');
     },
     changeReceive() {
       this.changeNow = true;
