@@ -291,7 +291,11 @@ export default {
         this.changeNum = [];
         this.changeNow = false;
         this.endChaging();
-        this.$emit('change-end', e.key.toUpperCase());
+        if (this.simplificKey(e.key)) {
+          this.$emit('change-end', this.simplificKey(e.key).toUpperCase());
+        } else {
+          this.$emit('change-end', e.key.toUpperCase());
+        }
       }
     },
     keyUp(e) {
