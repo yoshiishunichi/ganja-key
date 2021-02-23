@@ -120,20 +120,7 @@ export default {
         { active: false, changing: false },
         { active: false, changing: false },
       ],
-      defaultKeyCode: [
-        { code: '1' },
-        { code: '2' },
-        { code: '3' },
-        { code: '4' },
-        { code: '5' },
-        { code: '6' },
-        { code: '7' },
-        { code: '8' },
-        { code: '9' },
-        { code: '0' },
-        { code: '-' },
-        { code: '^' },
-      ],
+      defaultKeyCode: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '^'],
       keyCode: [
         { code: '1' },
         { code: '2' },
@@ -194,7 +181,11 @@ export default {
       console.log('変更する奴ら:', this.changeNum);
     },
     defaultReceive() {
-      this.keyCode = this.defaultKeyCode;
+      for (let i = 0; i < 12; i++) {
+        this.keyCode[i].code = this.defaultKeyCode[i];
+        console.log(this.defaultKeyCode[i]);
+      }
+      console.log('デフォルトに戻す1');
     },
     changeReceive() {
       this.changeNow = true;

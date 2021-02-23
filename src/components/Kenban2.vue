@@ -120,20 +120,7 @@ export default {
         { active: false, changing: false },
         { active: false, changing: false },
       ],
-      defaultKeyCode: [
-        { code: 'q' },
-        { code: 'w' },
-        { code: 'e' },
-        { code: 'r' },
-        { code: 't' },
-        { code: 'y' },
-        { code: 'u' },
-        { code: 'i' },
-        { code: 'o' },
-        { code: 'p' },
-        { code: '@' },
-        { code: '[' },
-      ],
+      defaultKeyCode: ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '@', '['],
       keyCode: [
         { code: 'q' },
         { code: 'w' },
@@ -193,7 +180,11 @@ export default {
       console.log('変更する奴ら:', this.changeNum);
     },
     defaultReceive() {
-      this.keyCode = this.defaultKeyCode;
+      for (let i = 0; i < 12; i++) {
+        this.keyCode[i].code = this.defaultKeyCode[i];
+        console.log(this.defaultKeyCode[i]);
+      }
+      console.log('デフォルトに戻す2');
     },
     changeReceive() {
       console.log('変更の通知受け取ったよ2');
