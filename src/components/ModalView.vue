@@ -120,6 +120,7 @@ h2 {
 }
 
 button {
+  display: block;
   user-select: none;
   cursor: pointer;
   max-width: 400px;

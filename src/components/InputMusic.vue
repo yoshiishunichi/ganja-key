@@ -121,6 +121,7 @@ button {
   background: rgb(50, 70, 120);
   color: #fff;
   margin: 12px auto;
+  display: block;
 }
 
 button:hover {
