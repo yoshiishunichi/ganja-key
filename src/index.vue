@@ -8,18 +8,19 @@
       @change-serve="changeKey"
       @default-serve="defaultKey"
     />
-    <div class="key-wrap">
+    <h1 class="mob-attention">パソコンで使ってね！</h1>
+    <div class="key-wrap mob-catch">
       <Kenban1 ref="keyRef1" class="kenban" @change-end="receiveChangeEnd1" />
       <Kenban2 ref="keyRef2" class="kenban" @change-end="receiveChangeEnd2" />
       <Kenban3 ref="keyRef3" class="kenban" @change-end="receiveChangeEnd3" />
     </div>
-    <h3 v-if="changingNow" class="change-title">
+    <h3 v-if="changingNow" class="change-title mob-catch">
       キー変更中<br />
       (画面で変更したいキーを選択して、キーボードを押してね)<br />
       Enterでキャンセル
     </h3>
-    <h3 v-if="changeCancel" class="change-title">キャンセル完了</h3>
-    <ChangeFinishDeclare v-if="changeFinish" :changed-key="changedKey" />
+    <h3 v-if="changeCancel" class="change-title mob-catch">キャンセル完了</h3>
+    <ChangeFinishDeclare v-if="changeFinish" :changed-key="changedKey" class="mob-catch" />
   </div>
 </template>
 
@@ -187,6 +188,10 @@ h3 {
   margin-right: auto;
 }
 
+.mob-attention {
+  display: none;
+}
+
 @media screen and (min-height: 600px) {
   h3 {
     font-size: 12px;
@@ -214,6 +219,20 @@ h3 {
     margin-bottom: 15px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .mob-catch {
+    display: none;
+  }
+
+  .mob-attention {
+    display: block;
+    font-size: 18px;
+    padding-top: 120px;
+    color: #efe;
+    font-weight: bold;
   }
 }
 </style>
