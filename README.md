@@ -1,4 +1,9 @@
-# ganja-key
+# 3連キーボード図柄
+
+## App
+```
+https://3ren-keyboard.netlify.app/
+```
 
 ## Project setup
 ```
