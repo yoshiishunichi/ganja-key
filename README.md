@@ -7,7 +7,7 @@
 
 ## Link
 
-<a href="https://3ren-keyboard.netlify.app/" target="_blank" rel="noopener">https://3ren-keyboard.netlify.app
+<https://3ren-keyboard.netlify.app/>
 
 <br>
 
