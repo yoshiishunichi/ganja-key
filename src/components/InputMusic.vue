@@ -35,7 +35,6 @@ export default {
       document.getElementById('file_upload').value = '';
     },
     fileChange(e) {
-      console.log('changeが呼ばれた');
       if (e) {
         this.files = e.target.files;
         if (this.files.length > 0) {
@@ -47,13 +46,11 @@ export default {
             localStorage.audio = this.audioData;
           };
           reader.readAsDataURL(file);
-          console.log('filesに長さがあった');
         } else {
           this.audioData = '';
           this.$emit('audio-serve', this.audioData);
           localStorage.audio = this.audioData;
         }
-        console.log('eがあった');
       } else {
         this.audioData = '';
         this.files = null;

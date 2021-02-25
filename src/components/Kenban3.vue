@@ -160,12 +160,10 @@ export default {
     tapKey(num) {
       if (this.changeNow) {
         this.actives[num].changing = !this.actives[num].changing;
-        // 配列changeNumに格納したい
         let stillContained = false;
         for (let i = 0; i < 12; i++) {
           if (this.changeNum[i] === num) {
             stillContained = true;
-            // 重複した時にキー.changingを解除
             this.changeNum.splice(i, 1);
           }
         }
@@ -173,7 +171,6 @@ export default {
           this.changeNum.push(num);
         }
       }
-      console.log('変更する奴ら:', this.changeNum);
     },
     defaultReceive() {
       for (let i = 0; i < 12; i++) {
@@ -182,11 +179,9 @@ export default {
       localStorage.keys3 = JSON.stringify(this.keyCode);
     },
     changeReceive() {
-      console.log('変更の通知受け取ったよ3');
       this.changeNow = true;
     },
     endChaging() {
-      console.log('変更の終了を受け取ったよ3');
       this.changeNum = [];
       this.changeNow = false;
       for (let i = 0; i < 12; i++) {
@@ -274,7 +269,6 @@ export default {
         }
       }
       if (this.changeNow && e.key != 'Enter' && !this.catchMeta(e.key)) {
-        console.log('変更3', e.key);
         for (let i = 0; i < 12; i++) {
           if (this.actives[i].changing) {
             if (this.simplificKey(e.key)) {
@@ -283,7 +277,6 @@ export default {
               this.keyCode[i].code = e.key;
             }
             this.actives[i].changing = false;
-            console.log('i:', i);
           }
         }
         localStorage.keys3 = JSON.stringify(this.keyCode);

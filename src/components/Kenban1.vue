@@ -161,12 +161,10 @@ export default {
     tapKey(num) {
       if (this.changeNow) {
         this.actives[num].changing = !this.actives[num].changing;
-        // 配列changeNumに格納したい
         let stillContained = false;
         for (let i = 0; i < 12; i++) {
           if (this.changeNum[i] === num) {
             stillContained = true;
-            // 重複した時にキー.changingを解除
             this.changeNum.splice(i, 1);
           }
         }
@@ -174,7 +172,6 @@ export default {
           this.changeNum.push(num);
         }
       }
-      console.log('変更する奴ら:', this.changeNum);
     },
     defaultReceive() {
       for (let i = 0; i < 12; i++) {
@@ -281,7 +278,6 @@ export default {
               this.keyCode[i].code = e.key;
             }
             this.actives[i].changing = false;
-            console.log('i:', i);
           }
         }
         localStorage.keys1 = JSON.stringify(this.keyCode);
