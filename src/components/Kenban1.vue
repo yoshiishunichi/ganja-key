@@ -362,6 +362,7 @@ p {
   margin-left: auto;
   margin-right: auto;
   user-select: none;
+  font-weight: bold;
 }
 
 @media screen and (min-height: 600px) {
